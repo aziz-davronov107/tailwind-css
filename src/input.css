@@ -1,1 +1,10 @@
 @import "tailwindcss";
+.container{
+    @apply max-w-[1140px] m-auto
+}
+h1{
+    @apply text-3xl font-bold text-red-500
+}
+h2{
+    @apply text-2xl font-bold
+}
