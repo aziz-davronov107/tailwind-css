@@ -8,14 +8,20 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-amber-500: oklch(76.9% 0.188 70.08);
     --color-green-400: oklch(79.2% 0.209 151.711);
+    --color-blue-900: oklch(37.9% 0.146 265.522);
     --color-gray-400: oklch(70.7% 0.022 261.325);
+    --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-2xl: 42rem;
     --container-5xl: 64rem;
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
@@ -24,6 +30,7 @@
     --text-5xl--line-height: 1;
     --font-weight-bold: 700;
     --font-weight-black: 900;
+    --radius-2xl: 1rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -174,6 +181,51 @@
   }
 }
 @layer utilities {
+  .absolute {
+    position: absolute;
+  }
+  .fixed {
+    position: fixed;
+  }
+  .relative {
+    position: relative;
+  }
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .top-3 {
+    top: calc(var(--spacing) * 3);
+  }
+  .right-3 {
+    right: calc(var(--spacing) * 3);
+  }
+  .z-0 {
+    z-index: 0;
+  }
+  .z-1 {
+    z-index: 1;
+  }
+  .z-10 {
+    z-index: 10;
+  }
+  .z-11 {
+    z-index: 11;
+  }
+  .z-50 {
+    z-index: 50;
+  }
+  .z-100 {
+    z-index: 100;
+  }
+  .z-1000 {
+    z-index: 1000;
+  }
+  .z-1001 {
+    z-index: 1001;
+  }
   .col-span-2 {
     grid-column: span 2 / span 2;
   }
@@ -204,6 +256,9 @@
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
   .box-border {
     box-sizing: border-box;
   }
@@ -213,17 +268,50 @@
   .grid {
     display: grid;
   }
+  .hidden {
+    display: none;
+  }
+  .table {
+    display: table;
+  }
   .h-\[250px\] {
     height: 250px;
   }
+  .w-0 {
+    width: calc(var(--spacing) * 0);
+  }
+  .w-2 {
+    width: calc(var(--spacing) * 2);
+  }
+  .w-2xl {
+    width: var(--container-2xl);
+  }
   .w-5xl {
     width: var(--container-5xl);
+  }
+  .w-9 {
+    width: calc(var(--spacing) * 9);
+  }
+  .w-96 {
+    width: calc(var(--spacing) * 96);
   }
   .w-\[350px\] {
     width: 350px;
   }
   .w-\[1000px\] {
     width: 1000px;
+  }
+  .w-fit {
+    width: fit-content;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .border-collapse {
+    border-collapse: collapse;
+  }
+  .resize {
+    resize: both;
   }
   .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -237,6 +325,9 @@
   .justify-between {
     justify-content: space-between;
   }
+  .justify-center {
+    justify-content: center;
+  }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
   }
@@ -249,6 +340,13 @@
   .gap-10 {
     gap: calc(var(--spacing) * 10);
   }
+  .rounded-2xl {
+    border-radius: var(--radius-2xl);
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
   .border-2 {
     border-style: var(--tw-border-style);
     border-width: 2px;
@@ -256,14 +354,35 @@
   .bg-\[\#050521\] {
     background-color: #050521;
   }
+  .bg-black {
+    background-color: var(--color-black);
+  }
+  .bg-black\/5 {
+    background-color: color-mix(in srgb, #000 5%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 5%, transparent);
+    }
+  }
+  .bg-black\/50 {
+    background-color: color-mix(in srgb, #000 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
+    }
+  }
   .bg-red-500 {
     background-color: var(--color-red-500);
+  }
+  .bg-white {
+    background-color: var(--color-white);
   }
   .p-0 {
     padding: calc(var(--spacing) * 0);
   }
   .p-5 {
     padding: calc(var(--spacing) * 5);
+  }
+  .p-6 {
+    padding: calc(var(--spacing) * 6);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
@@ -282,6 +401,10 @@
   }
   .pr-10 {
     padding-right: calc(var(--spacing) * 10);
+  }
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
   .text-4xl {
     font-size: var(--text-4xl);
@@ -306,17 +429,42 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
+  .text-amber-500 {
+    color: var(--color-amber-500);
+  }
   .text-black {
     color: var(--color-black);
+  }
+  .text-blue-900 {
+    color: var(--color-blue-900);
   }
   .text-gray-400 {
     color: var(--color-gray-400);
   }
+  .text-gray-600 {
+    color: var(--color-gray-600);
+  }
   .text-green-400 {
     color: var(--color-green-400);
   }
+  .text-red-500 {
+    color: var(--color-red-500);
+  }
   .text-white {
     color: var(--color-white);
+  }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .opacity-5 {
+    opacity: 5%;
+  }
+  .opacity-56 {
+    opacity: 56%;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
 }
 .container {
@@ -326,6 +474,13 @@
 h1 {
   font-size: var(--text-3xl);
   line-height: var(--tw-leading, var(--text-3xl--line-height));
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-red-500);
+}
+h2 {
+  font-size: var(--text-2xl);
+  line-height: var(--tw-leading, var(--text-2xl--line-height));
   --tw-font-weight: var(--font-weight-bold);
   font-weight: var(--font-weight-bold);
 }
@@ -338,11 +493,17 @@ h1 {
   syntax: "*";
   inherits: false;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-border-style: solid;
       --tw-font-weight: initial;
+      --tw-outline-style: solid;
     }
   }
 }
